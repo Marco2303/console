@@ -1,0 +1,102 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 10, 2016, 7:13:52 PM
+    Author     : marco
+*/
+
+
+/*.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #ffffff;
+}*/
+.CustomHeadClass{
+     color: #ffffff;   
+     border: #000\9;
+}
+
+.immaginehome {
+  /*background: url(../images/desktop.jpg) no-repeat center center fixed;*/ 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: contain;
+}
+
+
+#bottomcolor{
+    background-color:#eeeeee;
+}
+.my-navbar {
+    font-size: 65px;
+    background-color:#ffffff ;
+    font-family: sans-serif;
+    font-style: oblique;
+    height: 100px;
+   
+}
+.navWidget {
+    font-family: inherit;
+    font-style: normal;
+    font-size: 15px;    
+}
+/*.breadcrumb {
+    background-color: #ffffcc;
+}*/
+
+a{
+    /*color: #003399;*/
+    color: #000099;
+}
+.logout-color{
+    color: #000099;
+}
+.navbar {
+    border-bottom-color: #eeeeee; 
+    border-bottom-width: 25px;
+}
+
+.glyphicon {
+    color: #6666ff;
+} 
+
+.labelrow{
+    border-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
+  margin-left: 30px;
+  margin-right: -20px;
+  height: 46px;
+}
+
+.form-control.text-border {
+    border: #dddddd;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #deffbb;
+}
+
+.form-group.clearfix.inline.form-config{
+    background-color: #eeeeee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px 10px 10px 10px; 
+}
+
+.totalpage{
+    color: #00cc00;
+}

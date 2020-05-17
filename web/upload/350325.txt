@@ -1,0 +1,173 @@
+0    
+1    W:\MENU>CLS
+2    
+3    W:\MENU>ECHO Questa è una procedura automatica che gira su SCHEDULED 
+4    Questa è una procedura automatica che gira su SCHEDULED
+5    
+6    W:\MENU>ECHO ******************************************************************* 
+7    *******************************************************************
+8    
+9    W:\MENU>ECHO *    PROC: TENTATAVEN                         APPL: ATONPARTIT    * 
+10    *    PROC: TENTATAVEN                         APPL: ATONPARTIT    *
+11    
+12    W:\MENU>ECHO *                                                                 * 
+13    *                                                                 *
+14    
+15    W:\MENU>ECHO *    RICEZIONE FILE PER PALMARI ATON PROCEDURA ON SALES           * 
+16    *    RICEZIONE FILE PER PALMARI ATON PROCEDURA ON SALES           *
+17    
+18    W:\MENU>ECHO *    ------------------------------------------------------       * 
+19    *    ------------------------------------------------------       *
+20    
+21    W:\MENU>ECHO *                                                                 * 
+22    *                                                                 *
+23    
+24    W:\MENU>ECHO *    Esecuzione del 18/04/2020 - Ore  7.55.00,33                  * 
+25    *    Esecuzione del 18/04/2020 - Ore  7.55.00,33                  *
+26    
+27    W:\MENU>ECHO *                                                                 * 
+28    *                                                                 *
+29    
+30    W:\MENU>ECHO ******************************************************************* 
+31    *******************************************************************
+32    
+33    W:\MENU>ECHO.
+34    
+35    
+36    W:\MENU>ECHO On 
+37    
+38    W:\MENU>W:
+39    
+40    W:\MENU>CD \MENU 
+41    
+42    W:\MENU>REM *** RICEZIONE FILE PER PALMARI ATON PROCEDURA ON SALES 
+43    
+44    W:\MENU>CLS
+45    
+46    W:\MENU>W:
+47    
+48    W:\MENU>CD \MENU 
+49    
+50    W:\MENU>set "radice=s:\import"        
+51    
+52    W:\MENU>set "radice2=r:\import"        
+53    
+54    W:\MENU>set "onsales=m:\convert" 
+55    
+56    W:\MENU>set "aton=w:\aton" 
+57    
+58    W:\MENU>set "hostfile12=PARTIT"  
+59    
+60    W:\MENU>set "hostfile1=CLIENT"  
+61    
+62    W:\MENU>REM *** CONTROLLO CHE NON ESISTA IL SEMAFORO USATO DA ATON PER L'IMPORT  
+63    
+64    W:\MENU>IF EXIST s:\import\impaton.sem goto fine 
+65    
+66    W:\MENU>IF EXIST r:\import\impaton.sem goto fine 
+67    
+68    W:\MENU>rem liminazione file x SFA 
+69    
+70    W:\MENU>del /Q w:\aton\PARTIT.* 
+71    
+72    W:\MENU>del /Q w:\aton\CLIENT.* 
+73    
+74    W:\MENU>REM *** GENERO IL FILE SEMAFORO PRIMA DELA COPIA DEI FILE 
+75    
+76    W:\MENU>REM IF EXIST s:\import\impstarnet.sem del s:\import\impstarnet.sem  
+77    
+78    W:\MENU>IF EXIST r:\import\impstarnet.sem del s:\import\impstarnet.sem  
+79    
+80    W:\MENU>REM TYPE semaforo > s:\import\impstarnet.sem 
+81    
+82    W:\MENU>TYPE semaforo  1>r:\import\impstarnet.sem 
+83    
+84    W:\MENU>rem  
+85    
+86    W:\MENU>DEL /Q comandi.ftp  
+87    
+88    W:\MENU>ECHO *** RICEZIONE FILE DA HOST 
+89    *** RICEZIONE FILE DA HOST
+90    
+91    W:\MENU>ECHO .   
+92    .  
+93    
+94    W:\MENU>ECHO open 192.168.10.208 1>comandi.ftp 
+95    
+96    W:\MENU>ECHO workpro 1>>comandi.ftp 
+97    
+98    W:\MENU>ECHO prod 1>>comandi.ftp 
+99    
+100    W:\MENU>ECHO cd workpro.192 1>>comandi.ftp 
+101    
+102    W:\MENU>ECHO recv PARTIT.TOT	s:\import\PARTIT.TOT 1>>comandi.ftp 
+103    
+104    W:\MENU>ECHO recv PARTIT.TO2	r:\import\PARTIT.TOT 1>>comandi.ftp 
+105    
+106    W:\MENU>ECHO recv PARTIT.TOT	w:\aton\PARTIT.TOA 1>>comandi.ftp 
+107    
+108    W:\MENU>ECHO recv PARTIT.TO2	w:\aton\PARTIT.TOG 1>>comandi.ftp 
+109    
+110    W:\MENU>ECHO recv CLIENT.TOT	  w:\aton\CLIENT.TOA 1>>comandi.ftp 
+111    
+112    W:\MENU>ECHO recv CLIENT.TO2	  w:\aton\CLIENT.TOG 1>>comandi.ftp 
+113    
+114    W:\MENU>ECHO quit 1>>comandi.ftp 
+115    
+116    W:\MENU>REM **** LANCIO RICEZIONE FILE                                  
+117    
+118    W:\MENU>ftp -v -i -s:comandi.ftp 
+119    ftp> Utente (192.168.10.208:(none)): open 192.168.10.208
+120    ftp> 
+121    
+122    ftp> cd workpro.192
+123    ftp> recv PARTIT.TOT	s:\import\PARTIT.TOT
+124    ftp> recv PARTIT.TO2	r:\import\PARTIT.TOT
+125    ftp> recv PARTIT.TOT	w:\aton\PARTIT.TOA
+126    ftp> recv PARTIT.TO2	w:\aton\PARTIT.TOG
+127    ftp> recv CLIENT.TOT	  w:\aton\CLIENT.TOA
+128    ftp> recv CLIENT.TO2	  w:\aton\CLIENT.TOG
+129    quit
+130    
+131    W:\MENU>rem *** ELIMINAZIONE FILE SEMAFORO 
+132    
+133    W:\MENU>REM IF EXIST s:\import\impstarnet.sem del s:\import\impstarnet.sem 
+134    
+135    W:\MENU>IF EXIST r:\import\impstarnet.sem del r:\import\impstarnet.sem 
+136    
+137    W:\MENU>REM  
+138    
+139    W:\MENU>REM COPIA FILE X SFA  
+140    
+141    W:\MENU>REM
+142    
+143    W:\MENU>CD w:\aton 
+144    
+145    W:\ATON>REM ELABORAZIONE FILE PARTIT 
+146    
+147    W:\ATON>copy   PARTIT.TOA + PARTIT.TOG PARTIT.TXT 
+148    PARTIT.TOA
+149    PARTIT.TOG
+150            1 file copiati.
+151    
+152    W:\ATON>CALL W:\MENU\ATON_ERASE_LAST_CHAR w:\aton\PARTIT 
+153    Processing files: w:\aton\PARTIT
+154            1 file copiati.
+155    CLIENT.TOA
+156    CLIENT.TOG
+157            1 file copiati.
+158    Processing files: w:\aton\CLIENT
+159            1 file copiati.
+160    ECHO disattivato.
+161    *******************************************************************
+162    *                                                                 *
+163    *                    OPERAZIONE TERMINATA REGOLARMENTE            *
+164    *                                                                 *
+165    *******************************************************************
+166    
+167    *******************************************************************
+168    *                                                                 *
+169    *                       FINE PROCEDURA                            *
+170    *                                                                 *
+171    *******************************************************************
+172    
