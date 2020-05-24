@@ -68,7 +68,7 @@ $ur = Yii::$app->getRequest()->getQueryParam('nextpage');
     </h5>
     
     
-    <div class="form-group clearfix inline form-config" >
+    <div class="form-group clearfix inline form-config " style=" display: inline-block; width: 1100px; height: 60px; margin: 1em;" >
         <!--<div class="row">-->
             <div class="col-lg-1">
                 <?=  Html::a( 'Home page' ,Url::toRoute(['consrighe/indexall', 'id'=>trim($s->get('indexallid')),'nextpage'=>0]), ['class'=>'btn btn-primary'])?>
@@ -97,7 +97,10 @@ $ur = Yii::$app->getRequest()->getQueryParam('nextpage');
             <div class="col-lg-1" style="padding-left: 50px;">
                 <?= Html::a('Download TXT', ['downloadall', 'id'=>$id], ['class' => 'btn btn-primary']) ?>        
             </div>
-            <div class="col-lg-4"></div>
+            <div class="col-lg-1 inline" >
+                <?= Html::a('Down TXT no Num', ['downloadall', 'id'=>$id+1], ['class' => 'btn btn-primary']) ?>        
+            </div>
+            <div class="col-lg-1" style="clear: left;"></div>
             <?php $form = ActiveForm::end(); ?>
         <!--</div>-->
     </div>    

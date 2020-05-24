@@ -65,6 +65,7 @@ class ConsrigheController extends Controller
 
             //Crea il file da stampare
             $prtfile = $this->SalvaConsoleTXT($this->StampaFileConsole(null, $id),$id);
+            $prtfile = $this->SalvaConsoleTXTnoNum($this->StampaFileConsole(null, $id),$id+1);
 
             if ($topageform->load(Yii::$app->request->post())){
                 $dataProvider->pagination->page = $topageform->topage -1;     
@@ -111,6 +112,7 @@ class ConsrigheController extends Controller
 
             //Crea il file da stampare
             $prtfile = $this->SalvaConsoleTXT($this->StampaFileConsole($key, $id),$id);
+            $prtfile = $this->SalvaConsoleTXTnoNum($this->StampaFileConsole($key, $id),$id+1);
             
             if ($topageform->load(Yii::$app->request->post())){
                 $dataProvider->pagination->page = $topageform->topage -1;     
@@ -287,25 +289,6 @@ class ConsrigheController extends Controller
                 }
             }                
 
-//            $prearray = array();
-//            $array = array();
-//            foreach ($param as $value) {
-//                 $tmp = ConsRighe::find()->where(['cchiave'=>$id])
-//                         ->andFilterWhere(['like', 'criga', $value])
-//                         ->all();
-//                 foreach ($tmp as $estrai) {
-//                        array_push($prearray, $estrai);
-//                    }
-//                }
-//                foreach ($prearray as $val) {   //controllo falsi positivi
-//                    $write=false;
-//                    foreach ($falsipositivi as $falsi) {
-//                        $ext = strstr($val->criga,$falsi);
-//                        if ($ext != false) $write=true;
-//                    }
-//                    if($write == false) array_push($array, $val);
-//                }
-//                sort($array);
             
                 $dataProvider = new ArrayDataProvider([
                     'allModels' => $righeconsole,
@@ -620,6 +603,25 @@ class ConsrigheController extends Controller
        $myfile = fopen(Yii::getAlias('@webroot').'/upload/'.$id.'.txt', "w") or die("Unable to open file!");
        foreach ($righe as $value) {
            $prog = substr($value['cprogressivo'].'      ', 0,6) ;
+           fwrite($myfile, $prog.'    '.$value['criga'].PHP_EOL);
+       }
+       fclose($myfile);
+
+       return $id.'.txt';
+   }
+   /*
+    * 
+    * Salva il file in formato .txt senza numarazione
+    * 
+    */
+   private function SalvaConsoleTXTnoNum($righe,$id){
+       
+       
+       $t = Yii::getAlias('@webroot');
+       
+       $myfile = fopen(Yii::getAlias('@webroot').'/upload/'.$id.'.txt', "w") or die("Unable to open file!");
+       foreach ($righe as $value) {
+           $prog = '  '    ;
            fwrite($myfile, $prog.'    '.$value['criga'].PHP_EOL);
        }
        fclose($myfile);

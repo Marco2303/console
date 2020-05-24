@@ -101,7 +101,10 @@ $total = $dataProvider->totalCount; //total records // 15
             <div class="col-lg-1" style="padding-left: 50px;">
                 <?= Html::a('Download TXT', ['download', 'id'=>$id], ['class' => 'btn btn-primary']) ?>        
             </div>        
-        <div class="col-lg-5"></div>
+            <div class="col-lg-1" style="padding-left: 100px;">
+                <?= Html::a('Down TXT no Num', ['downloadall', 'id'=>$id+1], ['class' => 'btn btn-primary']) ?>        
+            </div>
+        <!--<div class="col-lg-5"></div>-->
         <?php $form = ActiveForm::end(); ?>
     </div>    
     
