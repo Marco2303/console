@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
 use app\models\ConstestataSearch;
+use app\models\ConsAppconfig;
 
 
 
@@ -57,7 +58,7 @@ $this->title = 'Lista console';
                     $searchModel->cproc = $model['cproc'];
                     $searchModel->cexecid = $model['cexecid'];
                     $dataProvider = $searchModel->searchproc(Yii::$app->request->queryParams);
-                    $dataProvider->pagination->pageSize = 200;
+                    $dataProvider->pagination->pageSize = ConsAppconfig::findOne(['cappconfigid'=>16])['cappconfigpar'] ;
                     return Yii::$app->controller->renderPartial('indexapp',[
                             'dataProvider' => $dataProvider,
                         ]);
